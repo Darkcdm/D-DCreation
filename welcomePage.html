@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<head>
+	<title>WELCOME</title>
+</head>
+<body onload="checkLoggin()">
+	<h1>Time to create your D&D character</h1>
+	<a href="loginPage.html">
+		<p>login to start creating</p>
+	</a>
+	<a href="RegistrationPage.html">
+		<p>register if you don't have an account already</p>
+	</a>
+</body>
+
+<script>
+	function checkLoggin() {
+		if (sessionStorage.getItem("email")) {
+			window.location.replace("showPage.html");
+		}
+	}
+</script>

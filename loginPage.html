@@ -1,0 +1,74 @@
+<head>
+  <title>LOGIN</title>
+</head>
+
+<body onload="checkLoggin()">
+    <form>
+        <label>Email: </label>
+        <input type="email" id="email" >
+        <label>Password: </label>
+        <input type="password" id="password"></br></br>
+
+        
+    </form>
+    <button onclick="login()" >LOGIN</button>
+    <p id="TEST">
+
+    </p>
+</body>
+
+<script>
+    function login () {
+        //get data from the form
+        const email = document.getElementById("email").value;
+        const password = document.getElementById("password").value;
+
+        //DEBUG
+        console.log(email);
+        console.log(password);
+
+        if (email == "") {
+			document.getElementById("TEST").innerHTML = "You forgot to enter email";
+			return;
+		}
+		if (password == "") {
+			document.getElementById("TEST").innerHTML =
+				"You forgot to enter password";
+			return;
+		}
+
+        //send userdata to server to check if the user exists
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function() {
+          if (this.readyState == 4 && this.status == 200) {
+            
+              switch(this.responseText){
+                case "correct":
+                sessionStorage.setItem("email",email);
+                window.location.replace ("showPage.html");
+                
+                break;
+                case "wrong Email":
+                document.getElementById("TEST").innerHTML = "Wrong Email";
+                break;
+                case "wrong Password":
+                document.getElementById("TEST").innerHTML = "Wrong Password";  
+                break;
+                  default:
+                    document.getElementById("TEST").innerHTML = "Database Error";
+            }
+              
+            
+            
+          }
+        };
+        xmlhttp.open("GET", "login.php?email=" + email+"&password="+password, true);
+        xmlhttp.send();
+    
+    }
+    function checkLoggin() {
+		if (sessionStorage.getItem("email")) {
+			window.location.replace("showPage.html");
+		}
+	}
+    </script>
