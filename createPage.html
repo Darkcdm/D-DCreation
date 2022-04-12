@@ -294,7 +294,14 @@
 		}
 
 		//Get Checkboxed inputs
-
+		var checkboxes = document.getElementsByName("Quirks[]");
+		var vals = "";
+		for (var i = 0, n = checkboxes.length; i < n; i++) {
+			if (checkboxes[i].checked) {
+				vals += "," + checkboxes[i].value;
+			}
+		}
+		if (vals) vals = vals.substring(1);
 		//const quirks = document.getElementById("Quirks").value;
 		//const description = document.getElementById("Description").value;
 		//
@@ -307,7 +314,7 @@
 		console.log(nickname);
 		console.log(surname);
 		console.log(sex);
-		//console.log(quirks);
+		console.log(vals);
 		//console.log(description);
 		console.log(placeOfBirth);
 		console.log(race);
