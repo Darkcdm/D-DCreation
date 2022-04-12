@@ -237,6 +237,7 @@
 				access="false"
 				multiple="false"
 				id="Character-Picture"
+				accept="image/png, image/jpeg"
 			/>
 		</div>
 		<div class="formbuilder-button form-group field-Create-Character">
@@ -302,12 +303,12 @@
 			}
 		}
 		if (vals) vals = vals.substring(1);
-		//const quirks = document.getElementById("Quirks").value;
-		//const description = document.getElementById("Description").value;
-		//
-		//const race = document.getElementById("Race").value;
-		//
-		//const characterPicture = document.getElementById("CharacterPicture").value;
+
+		//Get textarea inputs
+		const description = document.getElementById("DescriptionBackstory").value;
+
+		//Get file
+		//const profilePic = document.getElementById("Character-Picture");
 
 		//DEBUG
 		console.log(firstname);
@@ -315,10 +316,10 @@
 		console.log(surname);
 		console.log(sex);
 		console.log(vals);
-		//console.log(description);
+		console.log(description);
 		console.log(placeOfBirth);
 		console.log(race);
 		console.log(favouriteColour);
-		//console.log(characterPicture);
+		//console.log(profilePic);
 	}
 </script>
