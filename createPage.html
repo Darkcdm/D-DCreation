@@ -277,19 +277,12 @@
 		const favouriteColour = document.getElementById("Favourite-Colour").value;
 
 		//get radio inputs
-		var Sex = document.getElementsByName("Sex");
-		for (var i = 0, length = radios.length; i < length; i++) {
-			if (radios[i].checked) {
-				console.log(Sex[i].value);
+		var sex = document.getElementsByName("Sex");
+		for (var i = 0; i < sex.length; i++) {
+			if (sex[i].checked) {
+				var sexValue = sex[i].value;
 			}
 		}
-
-		const sex = Array.prototype.slice
-			.call(document.querySelectorAll(".Sex:checked"))
-			.map(function (el) {
-				return el.value;
-			})
-			.join(", ");
 
 		//const quirks = document.getElementById("Quirks").value;
 		//const description = document.getElementById("Description").value;
@@ -304,7 +297,7 @@
 		console.log(surname);
 		console.log(favouriteColour);
 
-		console.log(sex);
+		console.log(sexValue);
 		/*
 			console.log(quirks);
 			console.log(description);
@@ -314,5 +307,3 @@
 			*/
 	}
 </script>
-
-DescriptionBackstory baf
