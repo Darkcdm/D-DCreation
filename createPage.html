@@ -277,12 +277,23 @@
 		const favouriteColour = document.getElementById("Favourite-Colour").value;
 
 		//get radio inputs
-		var sex = document.getElementsByName("Sex");
-		for (var i = 0; i < sex.length; i++) {
-			if (sex[i].checked) {
-				var sexValue = sex[i].value;
+		//sex
+		var sexObject = document.getElementsByName("Sex");
+		for (var i = 0; i < sexObject.length; i++) {
+			if (sexObject[i].checked) {
+				var sex = sexObject[i].value;
 			}
 		}
+
+		//race
+		var raceObject = document.getElementsByName("Race");
+		for (var i = 0; i < raceObject.length; i++) {
+			if (raceObject[i].checked) {
+				var race = raceObject[i].value;
+			}
+		}
+
+		//Get Checkboxed inputs
 
 		//const quirks = document.getElementById("Quirks").value;
 		//const description = document.getElementById("Description").value;
@@ -295,15 +306,12 @@
 		console.log(firstname);
 		console.log(nickname);
 		console.log(surname);
+		console.log(sex);
+		//console.log(quirks);
+		//console.log(description);
+		console.log(placeOfBirth);
+		console.log(race);
 		console.log(favouriteColour);
-
-		console.log(sexValue);
-		/*
-			console.log(quirks);
-			console.log(description);
-			console.log(placeOfBirth);
-
-			console.log(characterPicture);
-			*/
+		//console.log(characterPicture);
 	}
 </script>
