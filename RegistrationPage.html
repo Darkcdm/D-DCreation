@@ -73,17 +73,17 @@
 				}
 			}
 		};
-		xmlhttp.open(
-			"GET",
-			"registration.php?email=" +
+
+		xhttp.open("POST", "registration.php", true);
+		xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+		xhttp.send(
+			"email=" +
 				email +
 				"&password=" +
 				password +
 				"&passwordCheck=" +
-				passwordCheck,
-			true
+				passwordCheck
 		);
-		xmlhttp.send();
 	}
 
 	function checkLoggin() {

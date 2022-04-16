@@ -2,9 +2,17 @@
 <head>
 	<title>Show Page</title>
 </head>
-<body>
+<body onload="checkLoggin()">
 	<a href="createPage.html">
 		<button>CREATE NEW CHARACTER</button>
 	</a>
 </body>
-<script></script>
+<script>
+	function checkLoggin() {
+		if (sessionStorage.getItem("email")) {
+			//window.location.replace("showPage.html");
+		} else {
+			window.location.replace("welcomePage.html");
+		}
+	}
+</script>
