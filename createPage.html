@@ -264,6 +264,15 @@
 				Clear All Fields
 			</button>
 		</div>
+		<script src="https://www.google.com/recaptcha/api.js"></script>
+		<button
+			class="g-recaptcha"
+			data-sitekey="reCAPTCHA_site_key"
+			data-callback="onSubmit"
+			data-action="submit"
+		>
+			Submit
+		</button>
 	</div>
 </body>
 <script>
@@ -315,7 +324,7 @@
 		const description = document.getElementById("DescriptionBackstory").value;
 
 		//Get file
-		//const profilePic = document.getElementById("Character-Picture");
+		const profilePic = document.getElementById("Character-Picture");
 
 		//DEBUG
 		console.log(firstname);
@@ -327,7 +336,7 @@
 		console.log(placeOfBirth);
 		console.log(race);
 		console.log(favouriteColour);
-		//console.log(profilePic);
+		console.log(profilePic);
 	}
 
 	function checkLoggin() {
@@ -336,5 +345,11 @@
 		} else {
 			window.location.replace("welcomePage.html");
 		}
+	}
+</script>
+
+<script>
+	function onSubmit(token) {
+		document.getElementById("demo-form").submit();
 	}
 </script>
