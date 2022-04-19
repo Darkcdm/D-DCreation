@@ -233,10 +233,10 @@
 			<input
 				type="file"
 				class="form-control"
-				name="Character-Picture"
+				name="CharacterPicture"
 				access="false"
 				multiple="false"
-				id="Character-Picture"
+				id="CharacterPicture"
 				accept="image/png, image/jpeg"
 			/>
 		</div>
@@ -274,6 +274,7 @@
 			Submit
 		</button>
 	</div>
+	<div id="DEBUG"></div>
 </body>
 <script>
 	function clearFields() {
@@ -312,31 +313,69 @@
 
 		//Get Checkboxed inputs
 		var checkboxes = document.getElementsByName("Quirks[]");
-		var vals = "";
+		var quirks = "";
 		for (var i = 0, n = checkboxes.length; i < n; i++) {
 			if (checkboxes[i].checked) {
-				vals += "," + checkboxes[i].value;
+				quirks += "," + checkboxes[i].value;
 			}
 		}
-		if (vals) vals = vals.substring(1);
+		if (quirks) quirks = quirks.substring(1);
 
 		//Get textarea inputs
 		const description = document.getElementById("DescriptionBackstory").value;
 
 		//Get file
-		const profilePic = document.getElementById("Character-Picture");
+		const profilePic = document.getElementById("CharacterPicture").files[0];
+
+		uploadFile(profilePic);
 
 		//DEBUG
 		console.log(firstname);
 		console.log(nickname);
 		console.log(surname);
 		console.log(sex);
-		console.log(vals);
+		console.log(quirks);
 		console.log(description);
 		console.log(placeOfBirth);
 		console.log(race);
 		console.log(favouriteColour);
 		console.log(profilePic);
+
+		//send userdata to server to check if the user exists
+		var xhttp = new XMLHttpRequest();
+		xhttp.onreadystatechange = function () {
+			if (this.readyState == 4 && this.status == 200) {
+				switch (this.responseText) {
+					case "correct":
+						window.location.replace("showPage.html");
+					default:
+						document.getElementById("DEBUG").innerHTML = this.responseText;
+				}
+			}
+		};
+		xhttp.open("POST", "loadDataToDB.php", true);
+		xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+		var header =
+			"firstname=" +
+			firstname +
+			"&nickname=" +
+			nickname +
+			"&surname=" +
+			surname +
+			"&sex=" +
+			sex +
+			"&quirks=" +
+			quirks +
+			"&description=" +
+			description +
+			"&placeOfBirth=" +
+			placeOfBirth +
+			"&race=" +
+			race +
+			"&favouriteColour=" +
+			favouriteColour;
+		console.log(header);
+		xhttp.send(header);
 	}
 
 	function checkLoggin() {
@@ -345,6 +384,16 @@
 		} else {
 			window.location.replace("welcomePage.html");
 		}
+	}
+
+	async function uploadFile(profilePic) {
+		let formData = new FormData();
+		formData.append("file", profilePic);
+		await fetch("postFileToServer.php", {
+			method: "POST",
+			body: formData,
+		});
+		console.log("The file has been uploaded successfully.");
 	}
 </script>
 
