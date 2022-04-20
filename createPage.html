@@ -346,10 +346,12 @@
 		xhttp.onreadystatechange = function () {
 			if (this.readyState == 4 && this.status == 200) {
 				switch (this.responseText) {
-					case "correct":
+					case "New record created successfully":
 						window.location.replace("showPage.html");
+						break;
 					default:
 						document.getElementById("DEBUG").innerHTML = this.responseText;
+						console.log(this.responseText);
 				}
 			}
 		};
@@ -373,7 +375,11 @@
 			"&race=" +
 			race +
 			"&favouriteColour=" +
-			favouriteColour;
+			favouriteColour +
+			"&profilePic=" +
+			profilePic.name +
+			"&email=" +
+			sessionStorage.getItem("email");
 		console.log(header);
 		xhttp.send(header);
 	}
