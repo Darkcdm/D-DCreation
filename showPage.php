@@ -101,7 +101,7 @@ while ($row = $dataPool->fetch_assoc()) {
     echo "CharacterPicture";
     echo "</th>";
     echo "<td>";
-    echo $row["CharacterPicture"];
+    echo '<img src=upload/"' . $row["CharacterPicture"] . '.png" width="50" height="50">';
     echo "</td>";
     echo "</tr>";
 

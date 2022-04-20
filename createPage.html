@@ -347,7 +347,7 @@
 			if (this.readyState == 4 && this.status == 200) {
 				switch (this.responseText) {
 					case "New record created successfully":
-						window.location.replace("showPage.html");
+						//window.location.replace("showPage.html");
 						break;
 					default:
 						document.getElementById("DEBUG").innerHTML = this.responseText;
