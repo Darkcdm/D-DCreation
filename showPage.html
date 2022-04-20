@@ -2,12 +2,35 @@
 <head>
 	<title>Show Page</title>
 </head>
-<body onload="checkLoggin()">
-	<a href="createPage.html">
-		<button>CREATE NEW CHARACTER</button>
-	</a>
+<body onload="main()">
+	<div id="redirect">
+		<a href="createPage.html">
+			<button>CREATE NEW CHARACTER</button>
+		</a>
+	</div>
+	<div id="tables"></div>
 </body>
 <script>
+	function main() {
+		var xhttp = new XMLHttpRequest();
+		xhttp.onreadystatechange = function () {
+			if (this.readyState == 4 && this.status == 200) {
+				switch (this.responseText) {
+					case "New record created successfully":
+						window.location.replace("showPage.html");
+						break;
+					default:
+						document.getElementById("DEBUG").innerHTML = this.responseText;
+						console.log(this.responseText);
+				}
+			}
+		};
+		xhttp.open("POST", "loadDataToDB.php", true);
+		xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+		console.log(header);
+		xhttp.send(header);
+	}
+
 	function checkLoggin() {
 		if (sessionStorage.getItem("email")) {
 			//window.location.replace("showPage.html");
